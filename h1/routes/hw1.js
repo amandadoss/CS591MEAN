@@ -8,26 +8,25 @@ var router = express.Router();
 var request = require('request');
 
 
-/* GET Request for hw1 .
+
 router.get('/', function (req, res, next) {
-    res.send("Route is working");
+    res.send("Route is working, please enter in a word");
 })
 
-*/
 
 
-router.route('/:word')
-    .get(function (req,res) {
+
+router.get('/:word',function (req,res,next) {
         let theWord = req.params.word;
         let lenWord = theWord.length;
         let json = JSON.stringify({string: theWord, length: lenWord});
         res.send(json);
-    })
-    .post(function (req,res) {
+    });
+
+router.post('/', function (req,res, next) {
         let newWord = req.body.word;
-       // let lenWord = newWord.length;
-        let json = JSON.stringify({string: newWord});
-        console.log(newWord)
+        let lenWord = newWord.length;
+        let json = JSON.stringify({string: newWord, length: lenWord});
         res.send(json)
 
     });
