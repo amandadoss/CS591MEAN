@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Latest compiled and minified jQuery -->
+    <script   src="https://code.jquery.com/jquery-2.2.3.js"   integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4="   crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Angular (minified) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-cookies.js"></script>
+
+
+    <!--Controllers for this page/app -->
+    <script src="javascripts/controllers.js"></script>
+
+<title>Caveman</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+
+
+<style>
+    body, html {height: 100%}
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+    .menu {display: none}
+    .bgimg {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("caveman.jpg");
+        min-height: 90%;
+    }
+</style>
+
+
+
+
+</head>
+<body ng-app="cs411">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+
+    </div>
+</div>
+
+<!-- Header with image -->
+<header class="bgimg w3-display-container" id="home">
+    <div class="w3-display-middle w3-center">
+        <span class="w3-text-white w3-hide-small" style="font-size:130px"><br>CAVE MAN</span>
+        <span class="w3-text-white w3-hide-small" style="font-size:60px"><i>Download.Deliver.Devour.</i></span>
+        <p><a href="/auth/twitter" class="btn btn-primary">Login with Twitter</a></p>
+    </div>
+</header>
+
+
+<!-- Menu Container -->
+<div ng-controller="cs411ctrl" ng-init="initApp()">
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+    <div class="w3-content">
+
+        <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">SEARCH</h1>
+        <div class="w3-row w3-center w3-border w3-border-dark-grey">
+            <form class="form-inline" name="inputForm">
+                <div class="form-group">
+                    <label class="sr-only" for="formCuisine">Cuisine Search</label>
+                    <input type="search"  class="form-control" size="65" id="formCuisine" placeholder="Cuisine or Restaurant" ng-model="cuisine" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="formAddress">Password</label>
+                    <input type="text" class="form-control" size="65" id="formAddress" placeholder="Enter Address" ng-model="address" required>
+                </div>
+                <button type="submit" class="btn btn-primary"  ng-disabled="inputForm.$invalid" ng-click="getUser()">{{buttonMessage}}</button>
+            </form>
+        </div>
+
+        <div id="results" class="w3-container menu w3-padding-32 w3-white">
+            <h1><b>Restaurants</b> <span class="w3-right w3-tag w3-dark-grey w3-round">Delivery Fee</span></h1>
+            <p class="w3-text-grey">{{restaurantname}} {{deliveryPrice}}</p>
+            <hr>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+
+

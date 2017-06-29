@@ -1,14 +1,28 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express')
+const path = require('path')
+const favicon = require('serve-favicon')
+const logger = require('morgan')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const passport = require('passport')
+
+//HOMEWORK ROUTES
+//var index = require('./routes/index')
+//var hw = require('./routes/hw1')
+//var hw2 = require('./routes/hw2')
+
+var home = require('./routes/api')
+var auth = require('./routes/authTwitter')
+
+//flash is used with passport to pop up messages
+const flash = require('connect-flash')
+//and flash requires session. We'll also want passport-session.
 
 
-var index = require('./routes/index')
-var hw = require('./routes/hw1')
-var hw2 = require('./routes/hw2')
+
+
+
 
 
 
@@ -22,14 +36,24 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Pass anything other than mounted routes to Angular
+app.use(session({ secret: 'this is not a secret' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/', index);
-app.use('/hw1', hw);
-app.use('/hw2', hw2);
+
+
+
+//app.use('/hw1', hw);
+//app.use('/hw2', hw2);
+
+
+app.use('/api', home);
+app.use('/auth', auth);
 
 
 
